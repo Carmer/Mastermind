@@ -1,14 +1,32 @@
 require './lib/mastermind'
 
-puts "Welcome to Mastermind"
+class Runner
 
-mastermind = Mastermind.new
-response = nil
+  attr_reader :mastermind
 
-until response && response.status == :won
-  print "> "
-  input = gets.chomp
-  response = mastermind.execute(input)
-  puts response.message
+  def initialize
+    @mastermind = Mastermind.new
+  end
+
+  def run
+    response = nil
+    printer.welcome
+
+
+    until response && response.status == :won
+      guess = input.user_guess
+      
+      response = mastermind.execute(input)
+      puts response.message
+      if response.status == :won
+        response = true
+      else
+      end
+    end
+    printer.goodbye
+  end
 end
-puts "Goodbye!"
+
+new_game = Runner.new
+
+new_game.run
