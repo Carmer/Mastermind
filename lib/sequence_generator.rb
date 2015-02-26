@@ -9,7 +9,7 @@ class SequenceGenerator
     @secret = Array.new(4)
   end
 
-  def sequence_generator
+  def generate_sequence
     secret = color_bank.sample(4)
   end
 

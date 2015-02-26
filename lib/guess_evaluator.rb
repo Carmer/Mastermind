@@ -1,8 +1,12 @@
 class GuessEvaluator
 
+  def initialize(guess)
+    @guess = guess
+    @guess_output = nil
+  end
 
-  def accept_guess
-    new_game.input
+  def evaluate_guess
+    if
   end
 
 

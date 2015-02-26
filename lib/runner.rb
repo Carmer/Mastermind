@@ -9,23 +9,40 @@ class Runner
   end
 
   def run
-    response = nil
-    printer.welcome
+    #response = nil
+    mastermind.printer.welcome
 
+    until mastermind.response.status == :game_over || mastermind.response.status == :won
 
-    until response && response.status == :won
-      guess = input.user_guess
-      
-      response = mastermind.execute(input)
-      puts response.message
-      if response.status == :won
-        response = true
-      else
-      end
+    answer = mastermind.input.accept_input
+
+    if    answer == ""
+      mastermind.printer.welcome
+    elsif answer == "q"
+      mastermind.quit
+    elsif answer == "i"
+      mastermind.instructions
+    elsif answer == "p"
+      mastermind.begin_game
+    else
+      mastermind.evaluate
     end
-    printer.goodbye
+
+
   end
 end
+end
+
+  #     puts response.message
+  #     if response.status == :won
+  #       response = true
+  #     else
+  #     end
+  #   end
+  #   printer.goodbye
+
+
+
 
 new_game = Runner.new
 
