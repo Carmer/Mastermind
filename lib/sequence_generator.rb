@@ -1,20 +1,9 @@
 class SequenceGenerator
 
-  attr_accessor :color_bank
-
-  attr_reader :secret
-
-  def initialize
-    @color_bank = ["r","g","b","y"]
-    @secret = Array.new(4)
-  end
+  COLORS = ["r", "g", "y", "b"]
+  SEQUENCE_LENGTH = 4
 
   def generate_sequence
-    secret = color_bank.sample(4)
+    (1..SEQUENCE_LENGTH).map { COLORS.sample }
   end
-
 end
-#
-# seq = SequenceGenerator.new
-#
-# print seq.sequence_generator

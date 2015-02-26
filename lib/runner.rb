@@ -9,39 +9,29 @@ class Runner
   end
 
   def run
-    #response = nil
-    mastermind.printer.welcome
+    print File.read(File.join(__dir__, "intro_graphic.txt"))
+    mastermind.message.welcome
 
-    until mastermind.response.status == :game_over || mastermind.response.status == :won
+    until mastermind.response.status == :game_over #|| mastermind.response.status == :won
+      answer = gets.chomp
 
-    answer = mastermind.input.accept_input
-
-    if    answer == ""
-      mastermind.printer.welcome
-    elsif answer == "q"
-      mastermind.quit
-    elsif answer == "i"
-      mastermind.instructions
-    elsif answer == "p"
-      mastermind.begin_game
-    else
-      mastermind.evaluate
+      case
+      when    answer == ""
+        mastermind.message.welcome
+        # mastermind.message(mastermind.response.status)
+      when answer == "q"
+        mastermind.quit
+      when answer == "i"
+        mastermind.instructions
+      when answer == "p"
+        mastermind.begin_game
+      when answer == "c" # ----> cheat needs to move into the game
+        mastermind.cheat
+      end
+      answer = ""
     end
-
-
   end
 end
-end
-
-  #     puts response.message
-  #     if response.status == :won
-  #       response = true
-  #     else
-  #     end
-  #   end
-  #   printer.goodbye
-
-
 
 
 new_game = Runner.new

@@ -8,34 +8,34 @@ class GuessEvaluatorTest < Minitest::Test
     assert GuessEvaluatorTest
   end
 
-  def test_game_can_accept_a_guess
-    user_guess = GuessEvaluator.new
-    assert_equal "", user_guess.accept_guess
-
+  def test_game_recognizes_correct_guess
+    guess = GuessEvaluator.new("yyyy", ["y","y","y","y"])
+    assert guess.guess_correct?
   end
 
-
   def test_game_tells_user_if_entry_is_too_short_1
-    skip
+    guess = GuessEvaluator.new("y", ["y","y","y","y"])
+    assert guess.guess_too_short?
   end
 
   def test_game_tells_user_if_entry_is_too_short_2
-    skip
+    guess = GuessEvaluator.new("yy", ["y","y","y","y"])
+    assert guess.guess_too_short?
   end
 
   def test_game_tells_user_if_entry_is_too_short_3
-    skip
-      secret = "BGGY"
-      guess = "BRY"
-      assert_equal
+    guess = GuessEvaluator.new("yyy", ["y","y","y","y"])
+    assert guess.guess_too_short?
   end
 
   def test_game_tells_user_if_entry_is_too_long
-    skip
+    guess = GuessEvaluator.new("yyyyy", ["y","y","y","y"])
+    assert guess.guess_too_short?
   end
 
   def test_it_can_evaluate_the_guess_and_give_feedback
-    skip
+    guess = GuessEvaluator.new("yrrr", ["y","y","y","y"])
+    assert "Your guess had #{guess.guess_num_correct} characters correct, #{guess_correct_positions} in the correct position."
   end
 
   def test_it_can_generate_message_if_one_color_of_guess_is_right
