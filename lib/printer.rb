@@ -13,27 +13,27 @@ class Printer
   end
 
   def what_is_your_guess
-    print "What is your guess?"
+    print "What is your guess?\n> "
   end
 
   def guess_too_few_char
-    print "Your guess had too few characters. Why don't you try again, and this time the right way."
+    print "Your guess had too few characters. Why don't you try again, and this time the right way.\n> "
   end
 
   def guess_too_many_char
-    print "Your guess had too many characters. You must not be very good with instructions. Why don't you try again, and this time the right way."
+    print "Your guess had too many characters. You must not be very good with instructions. Why don't you try again, and this time the right way.\n> "
   end
 
   def guess_correctness(guess_num_correct, guess_correct_positions) #need to enter feedback interpolation below
-    print "Your guess had #{guess_num_correct} characters correct, #{guess_correct_positions} in the correct position."
+    print "Your guess had #{guess_num_correct} characters correct, #{guess_correct_positions} in the correct position.\n> "
   end
 
   def out_of_guesses
-    print "Sorry, you're out of guesses. You suck at this game. Better luck next time - You need it."
+    print "Sorry, you're out of guesses. It's not that you're bad at this game, you're just not good. Better luck next time dummy."
   end
 
   def instructions
-    print "Mastermind is a code-breaking game that helps develop deductive reasoning and logic by requiring players to deduce secret combinations of colors with minimal clues. After each of these chances, the computer must reveal how many colors are in the correct location, or the correct color in the incorrect location, or completely incorrect. With this little information, you must improve upon your previous guess to crack the code. You have 10 chances to guess the correct sequence before you lose the game."
+    print "Mastermind is a code-breaking game that helps develop deductive reasoning and logic by requiring players to deduce secret combinations of colors with minimal clues. After each of these chances, the computer must reveal how many colors are in the correct location, or the correct color in the incorrect location, or completely incorrect. With this little information, you must improve upon your previous guess to crack the code. You have 10 chances to guess the correct sequence before you lose the game.\n> "
   end
 
   def guess_prompt
@@ -48,12 +48,12 @@ class Printer
     print "Guess Again!"
   end
 
-  def out_of_guesses
-    print "You're out of guesses. Better luck next time dummy."
-  end
-
   def quit
     print "You're a quitter. What would your momma say?"
+  end
+
+  def incorrect_input
+    print "Those are even colors in our game.\n> "
   end
 
 

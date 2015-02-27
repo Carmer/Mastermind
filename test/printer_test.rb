@@ -6,8 +6,7 @@ class PrinterTest < Minitest::Test
 
 
   def test_it_has_the_expected_messages
-    skip
-  expected = [:welcome, :wrong_guess, :you_win]
+  expected = [:welcome, :goodbye, :begin, :what_is_your_guess, :guess_too_few_char, :guess_too_many_char, :guess_correctness, :out_of_guesses, :instructions, :guess_prompt, :winner, :try_again, :quit]
 
   printer = Printer.new
   expected.each do |message|

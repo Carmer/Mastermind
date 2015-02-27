@@ -1,9 +1,8 @@
 class GuessEvaluator
 
-
   def initialize(guess , secret)
     @guess = guess.split("")
-    @secret = secret.dup
+    @secret = secret
   end
 
   def guess_correct?
@@ -18,18 +17,13 @@ class GuessEvaluator
     @guess.size > @secret.size
   end
 
-  def guess_num_correct
-    @guess.count do |color|
-      next false unless @secret.include?(color)
-      @secret.delete_at(@secret.index(color))
+  def guess_num_colors_correct
+    @guess.uniq.count do |color|
+      @secret.uniq.include?(color)
     end
   end
 
   def guess_correct_positions
-    positions = @guess.zip(@secret)
-    positions.count do |color|
-      color[0] == color[1]
-    end
+    positions = @guess.zip(@secret).count {|guess, secret| guess == secret}
   end
-
 end
