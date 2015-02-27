@@ -8,7 +8,7 @@ class MastermindTest < Minitest::Test
   end
 
   def test_it_wins
-    skip #until figure out how to stub
+    skip
     mm = Mastermind.new
     result = mm.execute("BBGB")
     assert result.message.downcase.include?("win")
