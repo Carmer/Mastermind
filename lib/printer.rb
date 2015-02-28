@@ -42,9 +42,9 @@ class Printer
 
   def winner(guess, response_count, total_min, total_sec)
     if response_count < 2
-        print "Congratulations! You guessed the sequence #{guess.upcase}, in #{response_count} guess over #{total_min} minutes and #{total_sec} seconds.\n(p)lay again? or (q)uit?\n>"
+        print "Congratulations! You guessed the sequence '#{guess.upcase}', in #{response_count} guess over #{total_min} minutes and #{total_sec} seconds.\n(p)lay again? or (q)uit?\n>"
       else
-        print "Congratulations! You guessed the sequence #{guess.upcase}, in #{response_count} guesses over #{total_min} minutes and #{total_sec} seconds.\n(p)lay again? or (q)uit?\n> "
+        print "Congratulations! You guessed the sequence '#{guess.upcase}', in #{response_count} guesses over #{total_min} minutes and #{total_sec} seconds.\n(p)lay again? or (q)uit?\n> "
     end
   end
 

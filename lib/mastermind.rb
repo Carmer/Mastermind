@@ -1,5 +1,4 @@
 require 'pry'                          # => true
-require "benchmark"                    # => true
 require_relative 'response' # ~> LoadError: cannad such file -- ./lib/printer
 require_relative 'sequence_generator'
 require_relative 'guess_evaluator'
@@ -17,13 +16,10 @@ class Mastermind
   def initialize
     @secret = SequenceGenerator.new.generate_sequence
     @response = Response.new(Hash.new)
-    # @total_min = 0
-    # @Total_sec = 0
     @start_time = nil
   end
 
   def begin_game
-  print  start_time
     @secret
     response.begin_game
     game_loop
