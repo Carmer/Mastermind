@@ -12,10 +12,9 @@ class Response
     @printer        = Printer.new
   end
 
-  def winner
-    @response_count += 1
+  def winner(guess, response_count, total_min, total_sec)
     @status   = :won
-    @message  = printer.winner
+    @message  = printer.winner(guess, response_count, total_min, total_sec)
   end
 
   def guess_too_short
@@ -28,10 +27,10 @@ class Response
     @message = printer.guess_too_many_char
   end
 
-  def correct_input(check)
+  def correct_input(guess, check)
     @response_count += 1
     @status  = :continue
-    @message = printer.guess_correctness(check.guess_num_colors_correct, check.guess_correct_positions)
+    @message = printer.guess_correctness(guess, check.guess_num_colors_correct, check.guess_correct_positions)
   end
 
   def invalid_input
@@ -67,5 +66,10 @@ class Response
   def welcome
     @status  = :continue
     @message = printer.welcome
+  end
+
+  def cheat(secret)
+    @status  = :continue
+    @message = printer.cheat(secret)
   end
 end

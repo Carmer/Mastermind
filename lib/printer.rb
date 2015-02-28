@@ -24,8 +24,8 @@ class Printer
     print "Your guess had too many characters. You must not be very good with instructions. Why don't you try again, and this time the right way.\n> "
   end
 
-  def guess_correctness(guess_num_correct, guess_correct_positions) #need to enter feedback interpolation below
-    print "Your guess had #{guess_num_correct} characters correct, #{guess_correct_positions} in the correct position.\n> "
+  def guess_correctness(guess, guess_num_correct, guess_correct_positions) #need to enter feedback interpolation below
+    print "Your guess #{guess.upcase} had #{guess_num_correct} characters correct, #{guess_correct_positions} in the correct position.\nGuess again...\n> "
   end
 
   def out_of_guesses
@@ -40,12 +40,12 @@ class Printer
     print "Whats your guess?\n> "
   end
 
-  def winner
-    print "You win!"
-  end
-
-  def try_again
-    print "Guess Again!"
+  def winner(guess, response_count, total_min, total_sec)
+    if response_count < 2
+        print "Congratulations! You guessed the sequence #{guess.upcase}, in #{response_count} guess over #{total_min} minutes and #{total_sec} seconds.\n(p)lay again? or (q)uit?\n>"
+      else
+        print "Congratulations! You guessed the sequence #{guess.upcase}, in #{response_count} guesses over #{total_min} minutes and #{total_sec} seconds.\n(p)lay again? or (q)uit?\n> "
+    end
   end
 
   def quit
@@ -53,8 +53,11 @@ class Printer
   end
 
   def incorrect_input
-    print "Those are even colors in our game.\n> "
+    print "Those are not even colors in our game. You don't follow directions well, do you?\nGuess again \n> "
   end
 
+  def cheat(secret)
+    print "#{secret}\n\nCheating - huh? I never pegged you for a cheater.\nMake a guess...\n>"
+  end
 
 end

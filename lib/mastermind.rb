@@ -1,20 +1,29 @@
-require 'pry'
-require_relative 'response'
+require 'pry'                          # => true
+require "benchmark"                    # => true
+require_relative 'response' # ~> LoadError: cannad such file -- ./lib/printer
 require_relative 'sequence_generator'
-require_relative 'menu'
 require_relative 'guess_evaluator'
 
 class Mastermind
 
-  attr_reader :secret,
-              :response
+  attr_reader   :secret,
+                :response
+
+  attr_accessor :start_time,
+                :end_time
+
+
 
   def initialize
     @secret = SequenceGenerator.new.generate_sequence
     @response = Response.new(Hash.new)
+    # @total_min = 0
+    # @Total_sec = 0
+    @start_time = nil
   end
 
   def begin_game
+  print  start_time
     @secret
     response.begin_game
     game_loop
@@ -24,18 +33,19 @@ class Mastermind
     until @response.status == :game_over || @response.status == :won
       guess = gets.chomp
       if guess[/[icq]/]
-        in_game_menu
+        in_game_menu(guess)
       else
         check = GuessEvaluator.new(guess, @secret)
         case
         when check.guess_correct?
-          @response.winner
+          response.response_count += 1
+          @response.winner(guess, response.response_count, total_min, total_sec)
         when check.guess_too_short?
           @response.guess_too_short
         when check.guess_too_long?
           @response.guess_too_long
         when guess[/[rbgy]{4}/]
-          @response.correct_input(check)
+          @response.correct_input(guess, check)
         else
           @response.invalid_input
         end
@@ -44,6 +54,8 @@ class Mastermind
         end
       end
     end
+    end_time
+    menu
   end
 
   def menu
@@ -62,8 +74,7 @@ class Mastermind
     end
   end
 
-  def in_game_menu
-    guess = gets.chomp #---> this is an issue - I can't get get the guess from above to be gotten here
+  def in_game_menu(guess)
     case
     when    guess == ""
       @response.what_is_your_guess
@@ -78,8 +89,28 @@ class Mastermind
     end
   end
 
+  def start_time
+    @start_time = Time.now
+  end
+
+  def end_time
+    Time.now
+  end
+
+  def total_time
+    total = end_time - @start_time
+    total.divmod(60)
+  end
+
+  def total_min
+  total_time[0]
+  end
+
+  def total_sec
+    total_time[1].to_i
+  end
 
   def cheat
-    print @secret
+    response.cheat(@secret)
   end
 end

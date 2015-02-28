@@ -12,9 +12,7 @@ class Runner
   def run
     print File.read(File.join(__dir__, "intro_graphic.txt"))
     mastermind.response.welcome
-
-      mastermind.menu
-
+    mastermind.menu
   end
 end
 

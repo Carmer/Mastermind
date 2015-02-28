@@ -1,7 +1,7 @@
 class GuessEvaluator
 
   def initialize(guess , secret)
-    @guess = guess.split("")
+    @guess = guess.upcase.split("")
     @secret = secret
   end
 
