@@ -82,7 +82,4 @@ class GuessEvaluatorTest < Minitest::Test
     guess = GuessEvaluator.new("gbry", ["g","b","r","y"])
     assert guess.guess_correct?
   end
-
-
-
 end

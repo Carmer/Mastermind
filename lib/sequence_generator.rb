@@ -5,10 +5,11 @@ class SequenceGenerator
 
   def initialize
   @colors = ["R", "G", "Y", "B"]
+
   @sequence_length = 4
   end
 
   def generate_sequence
-    (1..sequence_length).map { colors.sample }
+    (1..colors.size).map { colors.sample }
   end
 end

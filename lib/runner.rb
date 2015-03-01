@@ -4,7 +4,6 @@ class Runner
 
   attr_reader :mastermind
 
-
   def initialize
     @mastermind = Mastermind.new
   end
@@ -15,8 +14,5 @@ class Runner
     mastermind.menu
   end
 end
-
-
 new_game = Runner.new
-
 new_game.run

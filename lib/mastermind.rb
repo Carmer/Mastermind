@@ -11,12 +11,10 @@ class Mastermind
   attr_accessor :start_time,
                 :end_time
 
-
-
   def initialize
     @secret = SequenceGenerator.new.generate_sequence
     @response = Response.new(Hash.new)
-    @start_time = nil
+    @start_time = Time.now
   end
 
   def begin_game
@@ -58,30 +56,30 @@ class Mastermind
     guess = gets.chomp
     case
     when    guess == ""
-      @response.welcome
+      welcome
     when guess == "q"
       @response.quit
     when guess == "i"
-      @response.instructions
+      instructions
     when guess == "p"
       begin_game
     when guess == "c"
-      cheat
+      response.cheat(@secret)
     end
   end
 
   def in_game_menu(guess)
     case
     when    guess == ""
-      @response.what_is_your_guess
+      what_is_your_guess
     when guess == "q"
       @response.quit
     when guess == "i"
-      @response.instructions
+      response.instructions
     when guess == "p"
       begin_game
     when guess == "c"
-      cheat
+      response.cheat(@secret)
     end
   end
 
@@ -104,9 +102,5 @@ class Mastermind
 
   def total_sec
     total_time[1].to_i
-  end
-
-  def cheat
-    response.cheat(@secret)
   end
 end
