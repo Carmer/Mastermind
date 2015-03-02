@@ -39,7 +39,7 @@ class Response
 
   def out_of_guesses
     @status  = :game_over
-    print "Sorry, you're out of guesses. It's not that you're bad at this game, you're just not good. Better luck next time dummy."
+    print "Sorry, you're out of guesses. It's not that you're bad at this game, you're just not good. Better luck next time dummy.\nWould you like to (p)lay again? or (q)uit?\n> "
   end
 
   def quit
