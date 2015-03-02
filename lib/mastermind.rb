@@ -64,6 +64,7 @@ class Mastermind
       end
     end
     end_time
+    input[/[icqpICQP]/]
     input = gets.chomp
     final_menu = Menu.new(self, input)
     final_menu.go_to_menu_option
