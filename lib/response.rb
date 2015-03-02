@@ -29,7 +29,7 @@ class Response
   def correct_input(input, num_correct, correct_positions)
     @guess_count += 1
     @status  = :continue
-    print "Your guess #{input.upcase} had #{num_correct} characters correct, #{correct_positions} in the correct position.\nGuess again...\n> "
+    print "Your guess #{input.upcase} had #{num_correct} colors correct, #{correct_positions} in the correct position.\nGuess again...\n> "
   end
 
   def invalid_input

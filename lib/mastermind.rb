@@ -24,6 +24,7 @@ class Mastermind
     until @response.status == :game_over || @response.status == :won
       response.welcome
       input = gets.chomp
+      input[/[icqpICQP]/]
       game_menu = Menu.new(self, input)
       game_menu.go_to_menu_option
     end
