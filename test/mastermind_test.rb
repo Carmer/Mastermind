@@ -7,65 +7,37 @@ class MastermindTest < Minitest::Test
     assert MastermindTest
   end
 
-  def test_it_wins_if_guess_is_correct
-    skip
+  def test_it_can_play
     mm = Mastermind.new
-    @secret = ["Y","Y","Y","Y"]
-    mm.winning_guess("yyyy", 5, 2, 45)
-    assert_equal "", mm.winning_guess("yyyy", 5, 2, 45)
+    assert mm.respond_to?(:play)
   end
 
-  def test_it_generages_random_number
-    skip
+  def test_it_can_begin_a_game
     mm = Mastermind.new
-    #dont know how to stub in minitest yet
-    assert
+    assert mm.respond_to?(:begin_game)
   end
 
-  def test_it_welcomes_you_to_the_game
-    skip
+  def test_it_has_play_loop
     mm = Mastermind.new
-    assert "Welcome to MASTERMIND\nWould you like to (p)lay, read the (i)nstructions, or (q)uit?", mm.welcome
+    assert mm.respond_to?(:game_loop)
   end
 
-  def test_begin_screen_with_general_game_outline
-    skip
+  def test_it_starts_the_time_at_the_begining
     mm = Mastermind.new
-    assert "I have gernerated a sequence with four elements made up of: (r)ed, (g)reen, (b)lue, (y)ellow. Use (q)uit at any time to end game.\nWhat's your guess?", mm.begin
+    assert Time.now, mm.start_time
   end
 
-  def test_menu_item_information_works
-    skip
-    mm - Mastermind.new
-    assert menu
+  def test_it_can_detect_end_time
+    mm = Mastermind.new
+    assert Time.now, mm.end_time
   end
 
-  def test_menu_item_cheat_works
-    skip
-  end
-
-  def test_menu_item_play_runs
-    skip
-  end
-
-  def test_menu_item_quit_runs
-    skip
-  end
-
-  def test_game_can_accept_guess
-    skip
-  end
-
-  def test_it_ends_the_game_after_10_guesses
-    skip
-  end
-
-  def test_it_records_guess_count
-    skip
-  end
-
-  def test_it_tells_user_how_many_guesses_they_have_remaining
-    skip
+  def test_it_can_find_total_time_to_solve
+    skip # -> I dont know how to test time
+    mm = Mastermind.new
+    mm.start_time = Time.now
+    end_time  = Time.now + 2
+    assert 2, mm.total_time
   end
 
 end
