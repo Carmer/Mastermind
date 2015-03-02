@@ -9,8 +9,9 @@ class Menu
     @input = input.downcase
   end
 
-  def menu_parse
+  def go_to_menu_option
     welcome
+    instructions
     quit
     begin_the_game
     cheat
@@ -19,6 +20,12 @@ class Menu
   def welcome
     if input == ""
       @mastermind.response.welcome
+    end
+  end
+
+  def instructions
+    if input =="i"
+      @mastermind.response.instructions
     end
   end
 

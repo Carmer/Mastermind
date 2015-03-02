@@ -1,18 +1,18 @@
 #require './lib/printer'
 class Response
   attr_accessor :status,
-                :response_count
+                :guess_count
 
   def initialize
-      @response_count = 0
+      @guess_count = 0
   end
 
-  def winner(guess, response_count, total_min, total_sec)
+  def winner(guess, guess_count, total_min, total_sec)
     @status   = :won
-    if response_count < 2
-        print "Congratulations! You guessed the sequence '#{guess.upcase}', in #{response_count} guess over #{total_min} minutes and #{total_sec} seconds.\n(p)lay again? or (q)uit?\n>"
+    if guess_count < 2
+        print "Congratulations! You guessed the sequence '#{guess.upcase}', in #{guess_count} guess over #{total_min} minutes and #{total_sec} seconds.\n(p)lay again? or (q)uit?\n>"
       else
-        print "Congratulations! You guessed the sequence '#{guess.upcase}', in #{response_count} guesses over #{total_min} minutes and #{total_sec} seconds.\n(p)lay again? or (q)uit?\n> "
+        print "Congratulations! You guessed the sequence '#{guess.upcase}', in #{guess_count} guesses over #{total_min} minutes and #{total_sec} seconds.\n(p)lay again? or (q)uit?\n> "
     end
   end
 
@@ -27,9 +27,9 @@ class Response
   end
 
   def correct_input(input, num_correct, correct_positions)
-    @response_count += 1
+    @guess_count += 1
     @status  = :continue
-    print "Your guess #{input.upcase} had #{num_correct} characters correct, #{correct_positions} in the correct position.\nGuess again...\n> "
+    print "Your guess #{input.upcase} had #{num_correct} colors correct, #{correct_positions} in the correct position.\nGuess again...\n> "
   end
 
   def invalid_input
@@ -39,7 +39,7 @@ class Response
 
   def out_of_guesses
     @status  = :game_over
-    print "Sorry, you're out of guesses. It's not that you're bad at this game, you're just not good. Better luck next time dummy."
+    print "Sorry, you're out of guesses. It's not that you're bad at this game, you're just not good. Better luck next time dummy.\nWould you like to (p)lay again? or (q)uit?\n> "
   end
 
   def quit
