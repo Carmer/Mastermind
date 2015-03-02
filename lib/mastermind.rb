@@ -1,5 +1,5 @@
-require 'pry'                          # => true
-require_relative 'response' # ~> LoadError: cannad such file -- ./lib/printer
+require 'pry'                         
+require_relative 'response'
 require_relative 'sequence_generator'
 require_relative 'guess_evaluator'
 require_relative 'menu'
