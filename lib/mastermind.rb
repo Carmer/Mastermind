@@ -2,6 +2,7 @@ require 'pry'                          # => true
 require_relative 'response' # ~> LoadError: cannad such file -- ./lib/printer
 require_relative 'sequence_generator'
 require_relative 'guess_evaluator'
+require_relative 'menu'
 
 class Mastermind
 
@@ -12,34 +13,45 @@ class Mastermind
                 :end_time
 
   def initialize
-    @secret = SequenceGenerator.new.generate_sequence
-    @response = Response.new(Hash.new)
-    @start_time = Time.now
+    @secret = []
+    @response = Response.new
+    @start_time = nil
+  end
+
+  def play
+    until @response.status == :game_over || @response.status == :won
+      response.welcome
+      input = gets.chomp
+      game_menu = Menu.new(self, input)
+      game_menu.menu_parse
+    end
   end
 
   def begin_game
-    @secret
+    start_time
+    @secret = SequenceGenerator.new.generate_sequence
     response.begin_game
     game_loop
   end
 
   def game_loop
     until @response.status == :game_over || @response.status == :won
-      guess = gets.chomp
-      if guess[/[icq]/]
-        in_game_menu(guess)
+      input = gets.chomp
+      if input[/[icq]/]
+        in_game_menu = Menu.new(self, input)
+        in_game_menu.menu_parse
       else
-        check = GuessEvaluator.new(guess, @secret)
+        check = GuessEvaluator.new(input, @secret)
         case
         when check.guess_correct?
           response.response_count += 1
-          @response.winner(guess, response.response_count, total_min, total_sec)
+          @response.winner(input, response.response_count, total_min, total_sec)
         when check.guess_too_short?
           @response.guess_too_short
         when check.guess_too_long?
           @response.guess_too_long
-        when guess[/[rbgy]{4}/]
-          @response.correct_input(guess, check)
+        when input[/[rbgy]{4}/]
+          @response.correct_input(input, check.guess_num_colors_correct, check.guess_correct_positions)
         else
           @response.invalid_input
         end
@@ -49,38 +61,9 @@ class Mastermind
       end
     end
     end_time
-    menu
-  end
-
-  def menu
-    guess = gets.chomp
-    case
-    when    guess == ""
-      welcome
-    when guess == "q"
-      @response.quit
-    when guess == "i"
-      instructions
-    when guess == "p"
-      begin_game
-    when guess == "c"
-      response.cheat(@secret)
-    end
-  end
-
-  def in_game_menu(guess)
-    case
-    when    guess == ""
-      what_is_your_guess
-    when guess == "q"
-      @response.quit
-    when guess == "i"
-      response.instructions
-    when guess == "p"
-      begin_game
-    when guess == "c"
-      response.cheat(@secret)
-    end
+    input = gets.chomp
+    final_menu = Menu.new(self, input)
+    final_menu.menu_parse
   end
 
   def start_time

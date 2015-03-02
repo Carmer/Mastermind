@@ -1,5 +1,7 @@
 class SequenceGenerator
 
+  #COLORS = {easy: ["R", "G", "B", "Y"], medium: ["R", "G", "B", "Y", "P"], hard: ["R", "G", "B", "Y", "P", "I"]}
+
   attr_reader :sequence_length,
               :colors
 

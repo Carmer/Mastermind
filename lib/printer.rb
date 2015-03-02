@@ -24,7 +24,7 @@ class Printer
     print "Your guess had too many characters. You must not be very good with instructions. Why don't you try again, and this time the right way.\n> "
   end
 
-  def guess_correctness(guess, guess_num_correct, guess_correct_positions) #need to enter feedback interpolation below
+  def guess_correctness(guess, guess_num_correct, guess_correct_positions)
     print "Your guess #{guess.upcase} had #{guess_num_correct} characters correct, #{guess_correct_positions} in the correct position.\nGuess again...\n> "
   end
 

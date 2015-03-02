@@ -10,8 +10,7 @@ class Runner
 
   def run
     print File.read(File.join(__dir__, "intro_graphic.txt"))
-    mastermind.response.welcome
-    mastermind.menu
+    mastermind.play
   end
 end
 new_game = Runner.new
