@@ -9,11 +9,6 @@ class Menu
     @input = input.downcase
   end
 
-  # def menu_parse
-  #   if input[/[icq]/]
-
-
-
   def go_to_menu_option
     welcome
     quit

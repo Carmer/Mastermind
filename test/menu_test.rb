@@ -21,7 +21,7 @@ class MenuTest < Minitest::Test
 
   def test_it_can_respond_to_menu_parse_method
     test = Menu.new(mm = Mastermind.new, "")
-    assert test.respond_to?(:menu_parse)
+    assert test.respond_to?(:go_to_menu_option)
   end
 
   def test_it_can_respond_quit_request
