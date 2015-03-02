@@ -10,12 +10,14 @@ class Mastermind
                 :response
 
   attr_accessor :start_time,
-                :end_time
+                :end_time,
+                :input
 
   def initialize
     @secret = []
     @response = Response.new
     @start_time = nil
+    @input = nil
   end
 
   def play
@@ -23,7 +25,7 @@ class Mastermind
       response.welcome
       input = gets.chomp
       game_menu = Menu.new(self, input)
-      game_menu.menu_parse
+      game_menu.go_to_menu_option
     end
   end
 
@@ -37,25 +39,25 @@ class Mastermind
   def game_loop
     until @response.status == :game_over || @response.status == :won
       input = gets.chomp
-      if input[/[icq]/]
+      if input[/[icqpICQP]/]
         in_game_menu = Menu.new(self, input)
-        in_game_menu.menu_parse
+        in_game_menu.go_to_menu_option
       else
         check = GuessEvaluator.new(input, @secret)
         case
         when check.guess_correct?
-          response.response_count += 1
-          @response.winner(input, response.response_count, total_min, total_sec)
+          response.guess_count += 1
+          @response.winner(input, response.guess_count, total_min, total_sec)
         when check.guess_too_short?
           @response.guess_too_short
         when check.guess_too_long?
           @response.guess_too_long
-        when input[/[rbgy]{4}/]
+        when input[/[rbgyRBGY]{4}/]
           @response.correct_input(input, check.guess_num_colors_correct, check.guess_correct_positions)
         else
           @response.invalid_input
         end
-        if @response.response_count > 9
+        if @response.guess_count > 9
           @response.out_of_guesses
         end
       end
@@ -63,7 +65,7 @@ class Mastermind
     end_time
     input = gets.chomp
     final_menu = Menu.new(self, input)
-    final_menu.menu_parse
+    final_menu.go_to_menu_option
   end
 
   def start_time
