@@ -7,8 +7,6 @@ class SequenceGenerator
 
   def initialize
   @colors = ["R", "G", "Y", "B"]
-
-  @sequence_length = 4
   end
 
   def generate_sequence

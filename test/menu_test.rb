@@ -5,27 +5,27 @@ require './lib/menu'
 class MenuTest < Minitest::Test
 
   def test_it_responds_to_cheat
-    test = Menu.new(mm = Mastermind.new, "input")
+    test = Menu.new(Mastermind.new, "c")
     assert test.respond_to?(:cheat)
   end
 
   def test_it_responds_to_begin_game
-    test = Menu.new(mm = Mastermind.new, "input")
+    test = Menu.new(Mastermind.new, "input")
     assert test.respond_to?(:begin_the_game)
   end
 
   def test_it_can_respond_to_nothing_and_reprint_welcome
-    test = Menu.new(mm = Mastermind.new, "")
+    test = Menu.new(Mastermind.new, "")
     assert test.respond_to?(:welcome)
   end
 
   def test_it_can_respond_to_menu_parse_method
-    test = Menu.new(mm = Mastermind.new, "")
+    test = Menu.new(Mastermind.new, "")
     assert test.respond_to?(:go_to_menu_option)
   end
 
   def test_it_can_respond_quit_request
-    test = Menu.new(mm = Mastermind.new, "q")
+    test = Menu.new(Mastermind.new, "q")
     assert test.respond_to?(:quit)
   end
 

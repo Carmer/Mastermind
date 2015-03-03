@@ -1,4 +1,4 @@
-require 'pry'                         
+require 'pry'
 require_relative 'response'
 require_relative 'sequence_generator'
 require_relative 'guess_evaluator'
@@ -30,9 +30,14 @@ class Mastermind
     end
   end
 
+  def generate_secret
+    @secret = SequenceGenerator.new.generate_sequence
+  end
+
+
   def begin_game
     start_time
-    @secret = SequenceGenerator.new.generate_sequence
+    generate_secret
     response.begin_game
     game_loop
   end
